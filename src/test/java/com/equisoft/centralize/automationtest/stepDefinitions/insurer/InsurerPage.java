@@ -173,7 +173,7 @@ public class InsurerPage extends BasePage {
         WebElement phoneTypeOption = phoneTypeGroup.findElement(phoneTypeOptionCondition);
         phoneTypeOption.click();
         WebDriverUtils.sendKeys(phoneValueInput, PHONE_VALUE);
-        phoneExtInput.sendKeys(PHONE_EXT);
+        WebDriverUtils.sendKeys(phoneExtInput, PHONE_EXT);
     }
 
     public void fillAddressInformation(String addressType, String country, String address, String addressApt, String city, String province, String postalCode) {
