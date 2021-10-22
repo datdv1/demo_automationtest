@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/com/equisoft/centralize/automationtest/features",
+        features = "src/test/java/com/equisoft/centralize/automationtest/features/Login.feature",
         tags = "@LoginSuccessful",
         plugin = {
                 "pretty",

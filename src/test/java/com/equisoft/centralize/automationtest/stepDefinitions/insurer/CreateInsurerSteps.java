@@ -1,12 +1,9 @@
 package com.equisoft.centralize.automationtest.stepDefinitions.insurer;
 
-import com.equisoft.centralize.automationtest.utils.WebDriverUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class CreateInsurerSteps {
 
@@ -21,32 +18,31 @@ public class CreateInsurerSteps {
         insurerPage.openCreateInsurerPopup();
     }
 
-    @When("the user enters general information")
-    public void enterGeneralInformation() throws InterruptedException {
-        insurerPage.fillGeneralInformation();
+    @When("the user enters displayName is {string} and companyName is {string} and language is {string} and website is {string}")
+    public void enterGeneralInformation(String displayName, String companyName, String language, String website) {
+        insurerPage.fillGeneralInformation(displayName, companyName, language, website);
     }
 
-    @When("the user enters contact information")
-    public void enterContactInformation() throws InterruptedException {
-        insurerPage.fillGeneralContactInformation();
+    @When("the user enters emailType is {string} and email is {string} and phoneType is {string} and phoneValue is {string} and phoneExt is {string}")
+    public void enterContactInformation(String emailType, String email, String phoneType, String phoneValue, String phoneExt) {
+        insurerPage.fillContactInformation(emailType, email, phoneType, phoneValue, phoneExt);
     }
 
-    @When("the user enters address information")
-    public void enterAddressInformation() {
-        insurerPage.addAddress();
+    @When("the user enters addressType is {string} and country is {string} and address is {string} and addressApt is {string} and city is {string} and province is {string} and postalCode is {string}")
+    public void enterAddressInformation(String addressType, String country, String address, String addressApt, String city, String province, String postalCode) {
+        insurerPage.fillAddressInformation(addressType, country, address, addressApt, city, province, postalCode);
     }
 
     @When("the user clicks on the create button")
-    public void clickCreateButton() throws InterruptedException {
+    public void clickCreateButton() {
         insurerPage.clickCreateButton();
     }
 
     @Then("the user created and user details page is opened")
     public void getResult() {
-        Assertions.assertTrue(insurerPage.checkDisplayName());
-        Assertions.assertTrue(insurerPage.checkCompanyName());
-        Assertions.assertTrue(insurerPage.checkLanguageCompany());
-        Assertions.assertTrue(insurerPage.checkEmailCompany());
+        Assertions.assertTrue(insurerPage.checkGeneralInfo());
+        Assertions.assertTrue(insurerPage.checkContactInfo());
+        Assertions.assertTrue(insurerPage.checkAddressInfo());
         Assertions.assertTrue(insurerPage.isCreateSuccessful());
     }
 

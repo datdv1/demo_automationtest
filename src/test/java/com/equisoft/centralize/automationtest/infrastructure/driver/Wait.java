@@ -16,7 +16,7 @@ public class Wait {
         this.driver = driver;
     }
 
-    private void waitUntilCondition(ExpectedCondition condition, String timeoutMessage, int timeout) {
+    private <T> void waitUntilCondition(ExpectedCondition<T> condition, String timeoutMessage, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.withMessage(timeoutMessage);
         wait.until(condition);
@@ -31,6 +31,18 @@ public class Wait {
     public void forElementToBeDisplayed(int timeout, WebElement webElement, String webElementName){
         ExpectedCondition<WebElement> condition = ExpectedConditions.visibilityOf(webElement);
         String timeoutMessage = webElementName + " wasn't displayed after " + timeout + " seconds.";
+        waitUntilCondition(condition, timeoutMessage, timeout);
+    }
+
+    public void forElementToBeClickable(int timeout, WebElement webElement, String webElementName){
+        ExpectedCondition<WebElement> condition = ExpectedConditions.elementToBeClickable(webElement);
+        String timeoutMessage = webElementName + " wasn't displayed after " + timeout + " seconds.";
+        waitUntilCondition(condition, timeoutMessage, timeout);
+    }
+
+    public void forElementToBeClickable(int timeout, By elementLocator, String elementName){
+        ExpectedCondition<WebElement> condition = ExpectedConditions.elementToBeClickable(elementLocator);
+        String timeoutMessage = elementName + " elements were not displayed after " + timeout + " seconds.";
         waitUntilCondition(condition, timeoutMessage, timeout);
     }
 

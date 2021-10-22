@@ -22,7 +22,7 @@ public class Setup {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("['start-maximized']");
+                chromeOptions.addArguments("--start-maximized");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
